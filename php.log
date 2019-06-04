@@ -1,0 +1,10 @@
+[04-Jun-2019 14:36:50 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'sudy' in /Applications/MAMP/htdocs/study/index.php:83
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(83): PDO->__construct('mysql:dbname=su...', 'kiwatchi1991', 'orange1212', Array)
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 83
+[04-Jun-2019 16:00:56 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dasc' at line 1 in /Applications/MAMP/htdocs/study/index.php:184
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(184): PDO->query('SELECT * FROM d...')
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 184

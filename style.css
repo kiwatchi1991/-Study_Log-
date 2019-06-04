@@ -1,0 +1,85 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: #444;
+    line-height: 150%;
+}
+
+/*===============================-
+      ヘッダー
+=================================*/
+header{
+    margin-bottom: 30px;
+    height: 80px;
+    background-color: #333;
+    
+}
+header h1{
+    margin-left: 15px;
+    float: left;
+    width: 980px;
+}
+
+header h1 a{
+    color:#b6a489;
+    text-decoration: none;
+}
+
+/*===============================-
+レイアウト
+=================================*/
+.site-width{
+    overflow: hidden;
+    margin: 0 auto;
+    width: 980px;
+    border: solid black;
+    margin-bottom: 15px;
+}
+
+
+
+#contents .form{
+    background-color: #cee4ae;
+    padding: 10px 0;
+}
+#contents .form dl dt{
+    width: 165px;
+    padding: 10px 0 10px 10px;
+    float: left;
+    clear: both;
+}
+#contents .form dl dd{
+    padding: 10px 0;
+}
+
+section{
+    width: 550px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.icon{
+    margin: 0;
+    vertical-align: bottom;
+    padding-left: 10px;
+}
+#contents .form button{
+    font-size: 20px;
+    width: 80px;
+    margin-left: 175px;
+}
+#contents .form button:hover{
+    cursor: pointer;
+    background-color: #696969;
+    color : #ffffff
+}
+.past{
+    border: solid 1px #000;
+}
+
+
+/*===============================-
+エラー
+=================================*/
+.err_msg{
+    color:#ff4d4b;
+}
