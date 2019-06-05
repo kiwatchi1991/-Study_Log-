@@ -8,8 +8,36 @@ debug('　「　記事一覧　」　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
-?>
 
+// 画面表示用データ取得
+//================================
+// GETパラメータを取得
+//----------------------------------
+// カレントページ
+$currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1; //デフォルトは１ページ目
+//カテゴリー
+//$category = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';
+//ソート順
+$sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
+//パラメータに不正な値が入っているかチェック
+if(!is_int($currentPageNum)){
+    error_log('エラー発生：指定ページに不正な値が入りました');
+    header("Location:index.php"); //トップページへ
+}
+//表示件数
+$listSpan = 10;
+//現在の表示レコード先頭を算出
+$currentMinNum = (($currentPageNum-1)*$listSpan); //１ページ目なら(1-1)*20=0,2ページ目なら(２−１)*20=20
+//DBから商品データを取得
+$dbProductData = getProductList($currentMinNum,  $sort);
+//DBからカテゴリデータを取得
+//$dbCategoryData = getCategory();
+//debug('DBデータ：'.print_r($dbFormData,true));
+//debug('カテゴリデータ：'.print_r($dbCategoryData,true));
+
+debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+
+?>
 
 <!--ヘッダー-->
 <?php 
