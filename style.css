@@ -11,7 +11,7 @@ body{
 header{
     margin-bottom: 30px;
     height: 80px;
-    background-color: #333;
+    background-color: #228b22;
     
 }
 header h1{
@@ -21,7 +21,7 @@ header h1{
 }
 
 header h1 a{
-    color:#b6a489;
+    color:#ffffff;
     text-decoration: none;
 }
 
@@ -32,7 +32,7 @@ header h1 a{
     overflow: hidden;
     margin: 0 auto;
     width: 980px;
-    border: solid black;
+/*    border: solid black;*/
     margin-bottom: 15px;
 }
 
@@ -58,7 +58,7 @@ section{
     margin: 0 auto;
 }
 .icon{
-    margin: 0;
+    margin-bottom: 10px;
     vertical-align: bottom;
     padding-left: 10px;
 }
@@ -72,8 +72,10 @@ section{
     background-color: #696969;
     color : #ffffff
 }
-.past{
-    border: solid 1px #000;
+.past .form{
+/*    border: solid 1px #000;*/
+    margin-bottom: 5px;
+    background-color: #cee4ae;
 }
 
 
