@@ -1,35 +1,19 @@
 <?php 
 
-error_reporting(E_ALL);//エラー報告
-ini_set('display_errors','On');//ディスプレイ表示
-//================================
-// ログ
-//================================
-//ログを取るか
-ini_set('log_errors','on');
-//ログの出力ファイルを指定
-ini_set('error_log','php.log');
-//================================
-    // デバッグ
-    //================================
-    //デバッグフラグ
-    $debug_flg = true;
-//デバッグログ関数
-function debug($str){
-    global $debug_flg;
-    if(!empty($debug_flg)){
-        error_log('デバッグ：'.$str);
-    }
-}
+//共通変数・関数ファイルを読込み
+require('function.php');
+
+debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+debug('　「　トップページ　」　');
+debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+debugLogStart();
 
 
 //post送信されていた場合
 if(!empty($_POST)){
-//エラーメッセージ
-    define('MSG01','入力必須です');
 
-    //配列$err_msgを用意
-    $err_msg = array();
+
+
 
 //フォームが入力されていない場合
     if(empty($_POST['date'])){

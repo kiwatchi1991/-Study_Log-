@@ -8,3 +8,53 @@ Stack trace:
 #0 /Applications/MAMP/htdocs/study/index.php(184): PDO->query('SELECT * FROM d...')
 #1 {main}
   thrown in /Applications/MAMP/htdocs/study/index.php on line 184
+[05-Jun-2019 09:55:22 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: 'ああ' for column 'date' at row 1 in /Applications/MAMP/htdocs/study/index.php:89
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(89): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 89
+[05-Jun-2019 10:00:04 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: 'ああ' for column 'date' at row 1 in /Applications/MAMP/htdocs/study/index.php:89
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(89): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 89
+[05-Jun-2019 10:00:04 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[22007]: Invalid datetime format: 1292 Incorrect date value: 'ああ' for column 'date' at row 1 in /Applications/MAMP/htdocs/study/index.php:89
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(89): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 89
+[05-Jun-2019 10:29:27 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:29:27 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:29:27 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:29:27 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:29:27 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559698167
+[05-Jun-2019 10:34:50 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:34:50 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:34:50 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:34:50 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:34:50 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559698490
+[05-Jun-2019 10:45:30 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:30 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:45:30 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:30 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:45:30 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559699130
+[05-Jun-2019 10:45:30 Asia/Tokyo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: '６' for column 'day' at row 1 in /Applications/MAMP/htdocs/study/index.php:75
+Stack trace:
+#0 /Applications/MAMP/htdocs/study/index.php(75): PDOStatement->execute(Array)
+#1 {main}
+  thrown in /Applications/MAMP/htdocs/study/index.php on line 75
+[05-Jun-2019 10:45:36 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:36 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:45:36 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:36 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:45:36 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559699136
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559699142
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 10:45:42 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559699142
