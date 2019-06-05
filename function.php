@@ -61,8 +61,6 @@ function validRequired($str, $key){
      $err_msg[$key] = MSG01;
     }
 }
-//バリデーション関数（日付形式チェック）
-    if()
 
 //バリデーション関数（半角数字チェック）
 function validNumber($str, $key){
@@ -72,9 +70,14 @@ function validNumber($str, $key){
     }
 }
 
-//バリデーション関数（）
-//バリデーション関数（）
-//バリデーション関数（）
+//エラーメッセージ表示
+function getErrMsg($key){
+    global $err_msg;
+    if(!empty($err_msg['key'])){
+        return $err_msg[$key];
+    }
+}    
+
 
 
 
