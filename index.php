@@ -56,15 +56,11 @@ if(!empty($_POST)){
 ?>
 
 
+<?php
+$siteTitle = 'TOP';
+require('head.php');
+?>
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/study/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-    <title>HOME | $Study.log() </title>
-</head>
 <body>
    
     
@@ -144,14 +140,15 @@ if(!empty($_POST)){
     //        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
     $sql = "SELECT * FROM data order by data_id desc";
     //        2.SQL文を実行するコードを、変数に格納
-    $stmt1 = $dbh->query($sql);
+    $stmt = $dbh->query($sql);
     //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
     
     ?>
     <section class="past">
         <h2 class="icon">記録</h2>
+        <h3><a href="article.php">aaa</a></h3>
         <?php 
-    foreach($stmt1 as $row){
+    foreach($stmt as $row){
         //        4.連想配列形式の1行のデータから、キーを指定し、出力する
         ?>
        <div class="form">
