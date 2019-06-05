@@ -121,7 +121,7 @@ if(!empty($_POST)){
    <div id="contents" class="site-width">
 <!--       投稿-->
         <section class="today">
-           <h2 class="icon">入力</h2>
+           <h2 class="icon">投稿</h2>
            <div class="form">
                <form action="" method="post">
                    <dl>
@@ -131,7 +131,7 @@ if(!empty($_POST)){
                        <dd><input type="text" name="date" class="date" required value="<?php if(!empty($_POST['date'])) echo $_POST['date']; ?>"></dd>
                        
                        <span class="err_msg"><?php if(!empty($err_msg['day'])) echo $err_msg['day']; ?></span>
-                       <dt><span class="required">day</span></dt>
+                       <dt><span class="required">today(h)</span></dt>
                        
                        <dd><input type="text" name="day" class="day" required value="<?php if(!empty($_POST['day'])) echo $_POST['day']; ?>"></dd>
                        
@@ -146,7 +146,7 @@ if(!empty($_POST)){
                        <dd><textarea name="contents"  cols="50" rows="10" required value="<?php if(!empty($_POST['contents'])) echo $_POST['contents']; ?>"></textarea></dd>
                       
                    </dl>
-                   <button type="submit" class="btn">投稿</button>
+                   <button type="submit" class="btn">送信</button>
                    
                </form>
            </div>
@@ -182,27 +182,31 @@ if(!empty($_POST)){
     $stmt1 = $dbh->query($sql);
     //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
     
-          
-           
+    ?>
+    <section class="past">
+        <h2 class="icon">記録</h2>
+        <?php 
     foreach($stmt1 as $row){
         //        4.連想配列形式の1行のデータから、キーを指定し、出力する
-  ?>
-        <section class="past">
+        ?>
+       <div class="form">
         <?php 
             echo 
-            $row['date'].'<br>'
-            .$row['day'].'<br>'
-            .$row['total'].'<br>'
-            .$row['contents'].'<br>'; 
+            '勉強した日  '.$row['date'].'<br>'
+            .'today(h)  '.$row['day'].'<br>'
+            .'total(h)  '.$row['total'].'<br>'
+            .'内容  '.$row['contents'].'<br>'; 
+           ?>
+        </div>
+       <?php
+        }
         ?>
-        </section>
-     <?php
-   }
-    ?>
-    
+     
+  
+   </section>
     
 </body>
-</html>aaaaaaaaaaaaa
+</html>
 
 
 <!--
