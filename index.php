@@ -55,7 +55,12 @@ if(!empty($_POST)){
 
 ?>
 
+<!--ヘッダー-->
+<?php 
+require('header.php');
+?>
 
+<!--headタグ-->
 <?php
 $siteTitle = 'TOP';
 require('head.php');
@@ -64,12 +69,8 @@ require('head.php');
 <body>
    
     
-<!--ヘッダー-->
-  <header>
-     <div class="site-width">
-       <h1><a href="index.php"> $Study.Log() </a></h1>
-     </div>
-  </header>
+
+  
 
 <!--   メインコンテンツ-->
    <div id="contents" class="site-width">
@@ -145,8 +146,10 @@ require('head.php');
     
     ?>
     <section class="past">
-        <h2 class="icon">記録</h2>
-        <h3><a href="article.php">aaa</a></h3>
+       <div class="top-icon">
+            <h2 class="icon">記録</h2>
+           <h3><a href="article.php">&gt;&gt;記事一覧へ</a></h3>
+        </div>
         <?php 
     foreach($stmt as $row){
         //        4.連想配列形式の1行のデータから、キーを指定し、出力する

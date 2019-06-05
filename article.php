@@ -10,6 +10,13 @@ debugLogStart();
 
 ?>
 
+
+<!--ヘッダー-->
+<?php 
+require('header.php');
+?>
+
+<!--headタグ-->
 <?php
 $siteTitle = '記事一覧';
 require('head.php'); 
@@ -31,8 +38,10 @@ $stmt = $dbh->query($sql);
 
 ?>
 <section class="past">
-    <h2 class="icon">記録</h2>
-  
+    <div class="top-icon">
+        <h2 class="icon">記録</h2>
+        <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
+    </div>
     <?php 
     foreach($stmt as $row){
         //        4.連想配列形式の1行のデータから、キーを指定し、出力する
