@@ -45,7 +45,7 @@ define('MSG02','半角数字のみ御利用頂けます');
 define('MSG03','時間の形式が違います');
 define('MSG04','');
 define('MSG05','');
-define('MSG06','');
+define('MSG06','エラーが発生しました。しばらく経ってからもう一度お試しください。');
 
 //配列$err_msgを用意
 $err_msg = array();
@@ -82,6 +82,8 @@ function getErrMsg($key){
 //================================
 // DB接続関数
 //================================
+
+//DB接続
 function dbConnect(){
     //DBへの接続準備
     $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
@@ -103,6 +105,19 @@ function dbConnect(){
     return $dbh;
 }
 
-
+//SQL実行関数
+function query($dbh,$sql,$data){
+//作成したSQL文（$sql）を用意し、クエリ作成
+    $stmt = $dbh ->prepare($sql);
+//    プレースホルダーに値をセットし、SQL文を実行
+    if(!$stmt->execute($data)){
+        debug('クエリに失敗しました。');
+        debug('失敗したSQL：'.print_r($stmt,true));
+        $err_msg['common'] = MSG07;
+        return 0;
+    }
+        debug('クエリ成功。');
+        return $stmt;
+}
 
 ?>
