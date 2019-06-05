@@ -35,41 +35,22 @@ if(!empty($_POST)){
     
     if(empty($err_msg)){
       debug('バリデーションOKです。');
-        
-       
-        
-    
-    
-    if(empty($err_msg)){
 
-    //DBへの接続準備
-    $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
-    $user = 'kiwatchi1991';
-    $password = 'orange1212';
-    $options = array(
-        // SQL実行失敗時に例外をスロー
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        // デフォルトフェッチモードを連想配列形式に設定
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-  );
+//        DBへ接続
+    $dbh = dbConnect();
     
-    // PDOオブジェクト生成（DBへ接続）
-    $dbh = new PDO($dsn, $user, $password, $options);
-    
-    //SQL文（クエリー作成）
-    $stmt = $dbh->prepare('INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ');
+//    SQL文(クエリー作成)
+    $sql = 'INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ';
 
 //プレースホルダーに値をセットし、SQL文を実行（サーバーにデータを保存）
-    $stmt->execute(array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents));
+    $data = array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents);
+        
+    $stmt = queryPost($dbh,$sql,$data);
         
         header("Location:index.php");
     }
 
   }
-}
         
 
 ?>
@@ -115,19 +96,19 @@ if(!empty($_POST)){
                      </dd>
                        
                        <span class="err_msg"><?php if(!empty($err_msg['today'])) echo $err_msg['today']; ?></span>
-                       <dt><span class="required">today(h)</span></dt>
+                       <dt><span class="">today(h)</span></dt>
                        
-                       <dd><input type="text" name="today" class="day" required value="<?php if(!empty($_POST['today'])) echo $_POST['today']; ?>"></dd>
+                       <dd><input type="text" name="today" class="day" value="<?php if(!empty($_POST['today'])) echo $_POST['today']; ?>"></dd>
                        
                        <span class="err_msg"><?php if(!empty($err_msg['total'])) echo $err_msg['total']; ?></span>
-                       <dt><span class="required">total(h)</span></dt>
+                       <dt><span class="">total(h)</span></dt>
                        
-                       <dd><input type="text" name="total" class="total" required value="<?php if(!empty($_POST['total'])) echo $_POST['total']; ?>"></dd>
+                       <dd><input type="text" name="total" class="total"  value="<?php if(!empty($_POST['total'])) echo $_POST['total']; ?>"></dd>
                        
                        <span class="err_msg"><?php if(!empty($err_msg['contents'])) echo $err_msg['contents']; ?></span>
-                       <dt><span class="required">内容</span></dt>
+                       <dt><span class="">内容</span></dt>
                        
-                       <dd><textarea name="contents"  cols="50" rows="10" required value="<?php if(!empty($_POST['contents'])) echo $_POST['contents']; ?>"></textarea></dd>
+                       <dd><textarea name="contents"  cols="50" rows="10"  value="<?php if(!empty($_POST['contents'])) echo $_POST['contents']; ?>"></textarea></dd>
                       
                    </dl>
                    <button type="submit" class="btn">送信</button>

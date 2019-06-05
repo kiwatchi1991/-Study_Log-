@@ -45,7 +45,7 @@ define('MSG02','半角数字のみ御利用頂けます');
 define('MSG03','時間の形式が違います');
 define('MSG04','');
 define('MSG05','');
-define('MSG06','');
+define('MSG06','エラーが発生しました。しばらく経ってからもう一度お試しください。');
 
 //配列$err_msgを用意
 $err_msg = array();
@@ -82,8 +82,42 @@ function getErrMsg($key){
 //================================
 // DB接続関数
 //================================
-function
 
+//DB接続
+function dbConnect(){
+    //DBへの接続準備
+    $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
+    $user = 'kiwatchi1991';
+    $password = 'orange1212';
+    $options = array(
+        // SQL実行失敗時に例外をスロー
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        // デフォルトフェッチモードを連想配列形式に設定
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    );
 
+    // PDOオブジェクト生成（DBへ接続）
+    $dbh = new PDO($dsn, $user, $password, $options);
+    
+    return $dbh;
+}
+
+//SQL実行関数
+function queryPost($dbh,$sql,$data){
+//作成したSQL文（$sql）を用意し、クエリ作成
+    $stmt = $dbh ->prepare($sql);
+//    プレースホルダーに値をセットし、SQL文を実行
+    if(!$stmt->execute($data)){
+        debug('クエリに失敗しました。');
+        debug('失敗したSQL：'.print_r($stmt,true));
+        $err_msg['common'] = MSG07;
+        return 0;
+    }
+        debug('クエリ成功。');
+        return $stmt;
+}
 
 ?>
