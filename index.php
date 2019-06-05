@@ -1,65 +1,42 @@
 <?php 
 
-error_reporting(E_ALL);//エラー報告
-ini_set('display_errors','On');//ディスプレイ表示
-//================================
-// ログ
-//================================
-//ログを取るか
-ini_set('log_errors','on');
-//ログの出力ファイルを指定
-ini_set('error_log','php.log');
-//================================
-    // デバッグ
-    //================================
-    //デバッグフラグ
-    $debug_flg = true;
-//デバッグログ関数
-function debug($str){
-    global $debug_flg;
-    if(!empty($debug_flg)){
-        error_log('デバッグ：'.$str);
-    }
-}
+//共通変数・関数ファイルを読込み
+require('function.php');
+
+debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+debug('　「　トップページ　」　');
+debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
+debugLogStart();
 
 
 //post送信されていた場合
 if(!empty($_POST)){
-//エラーメッセージ
-    define('MSG01','入力必須です');
+    debug('POST送信があります。');
 
-    //配列$err_msgを用意
-    $err_msg = array();
+    //変数に代入　本来はサニタイズ必要
+    $date = htmlspecialchars($_POST['date'],ENT_QUOTES);
+    $today = htmlspecialchars($_POST['today'],ENT_QUOTES);
+    $total = htmlspecialchars($_POST['total'],ENT_QUOTES);
+    $contents = htmlspecialchars($_POST['contents'],ENT_QUOTES);
 
 //フォームが入力されていない場合
-    if(empty($_POST['date'])){
-        
-        $err_msg['date'] = MSG01;
-        
-    }
-    if(empty($_POST['day'])){
 
-        $err_msg['day'] = MSG01;
-
-    }
-    if(empty($_POST['total'])){
-
-        $err_msg['total'] = MSG01;
-
-    }
-    if(empty($_POST['contents'])){
-
-        $err_msg['contents'] = MSG01;
-
-    }
+    //勉強した日・today・total の形式チェック
+    validNumber($date,'date');
+    validNumber($today,'today');
+    validNumber($total,'total');
+    
+    
+    //    未入力チェック
+    validRequired($date, 'date');
+    validRequired($today, 'today');
+    validRequired($total, 'total');
+    validRequired($contents, 'contents');
     
     if(empty($err_msg)){
+      debug('バリデーションOKです。');
         
-        //変数に代入　本来はサニタイズ必要
-        $date = htmlspecialchars($_POST['date'],ENT_QUOTES);
-        $day = htmlspecialchars($_POST['day'],ENT_QUOTES);
-        $total = htmlspecialchars($_POST['total'],ENT_QUOTES);
-        $contents = htmlspecialchars($_POST['contents'],ENT_QUOTES);
+       
         
     
     
@@ -83,10 +60,10 @@ if(!empty($_POST)){
     $dbh = new PDO($dsn, $user, $password, $options);
     
     //SQL文（クエリー作成）
-    $stmt = $dbh->prepare('INSERT INTO data (date,day,total,contents) VALUES (:date,:day,:total,:contents) ');
+    $stmt = $dbh->prepare('INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ');
 
 //プレースホルダーに値をセットし、SQL文を実行（サーバーにデータを保存）
-    $stmt->execute(array(':date' => $date,':day'=> $day,':total'=> $total, ':contents'=> $contents));
+    $stmt->execute(array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents));
         
         header("Location:index.php");
     }
@@ -126,14 +103,21 @@ if(!empty($_POST)){
                <form action="" method="post">
                    <dl>
                       <span class="err_msg"><?php if(!empty($err_msg['date'])) echo $err_msg['date']; ?></span>
-                       <dt><span class="required">勉強した日</span></dt>
+                       <dt><span class="">勉強した日</span></dt>
                        
-                       <dd><input type="text" name="date" class="date" required value="<?php if(!empty($_POST['date'])) echo $_POST['date']; ?>"></dd>
+                     <dd>
+                       <input type="text" name="date" class="date" value="<?php if(!empty($_POST['date'])) echo $_POST['date']; ?>">
+<!--
+                           <div class="area-msg">
+                               <?php if(!empty($err_msg['date'])) echo $err_msg['date'];?>
+                           </div>
+-->
+                     </dd>
                        
-                       <span class="err_msg"><?php if(!empty($err_msg['day'])) echo $err_msg['day']; ?></span>
+                       <span class="err_msg"><?php if(!empty($err_msg['today'])) echo $err_msg['today']; ?></span>
                        <dt><span class="required">today(h)</span></dt>
                        
-                       <dd><input type="text" name="day" class="day" required value="<?php if(!empty($_POST['day'])) echo $_POST['day']; ?>"></dd>
+                       <dd><input type="text" name="today" class="day" required value="<?php if(!empty($_POST['today'])) echo $_POST['today']; ?>"></dd>
                        
                        <span class="err_msg"><?php if(!empty($err_msg['total'])) echo $err_msg['total']; ?></span>
                        <dt><span class="required">total(h)</span></dt>
@@ -193,7 +177,7 @@ if(!empty($_POST)){
         <?php 
             echo 
             '勉強した日  '.$row['date'].'<br>'
-            .'today(h)  '.$row['day'].'<br>'
+            .'today(h)  '.$row['today'].'<br>'
             .'total(h)  '.$row['total'].'<br>'
             .'内容  '.$row['contents'].'<br>'; 
            ?>
