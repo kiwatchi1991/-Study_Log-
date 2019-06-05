@@ -39,15 +39,13 @@ if(!empty($_POST)){
 //        DBへ接続
     $dbh = dbConnect();
     
-//    //SQL文（クエリー作成）
-//    $stmt = $dbh->prepare('INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ');
-//        
+//    SQL文(クエリー作成)
     $sql = 'INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ';
 
 //プレースホルダーに値をセットし、SQL文を実行（サーバーにデータを保存）
-    $stmt->execute(array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents));
+    $data = array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents);
         
-    $data = 
+    $stmt = queryPost($dbh,$sql,$data);
         
         header("Location:index.php");
     }

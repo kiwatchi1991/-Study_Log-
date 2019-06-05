@@ -106,7 +106,7 @@ function dbConnect(){
 }
 
 //SQL実行関数
-function query($dbh,$sql,$data){
+function queryPost($dbh,$sql,$data){
 //作成したSQL文（$sql）を用意し、クエリ作成
     $stmt = $dbh ->prepare($sql);
 //    プレースホルダーに値をセットし、SQL文を実行
