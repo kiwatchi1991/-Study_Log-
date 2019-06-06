@@ -199,9 +199,16 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
             echo '<li class="list-item"><a href="?p=1'.$link.'">&lt;</a></li>';
         }
         for($i = $minPageNum; $i <= $maxPageNum; $i++){
-            echo ''
+            echo '<li class="list-item ';
+            if($currentPageNum == $i ){ echo 'active'; }
+            echo  '"><a href="?p='.$i.$link.'">'.$i.'</a></li>';
         }
-
+        if($currentPageNum != $maxPageNum && $maxPageNum > 1){
+            echo'<li class="list-item"><a href="?p='.$maxPageNum.$link.'">&gt;</a></li>';
+        }
+      echo '</ul>';
+    echo '</div>';
+}
 
 
 
