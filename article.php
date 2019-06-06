@@ -16,6 +16,7 @@ debugLogStart();
 // カレントページ
 $currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1; //デフォルトは１ページ目
 //カテゴリー
+
 //$category = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';
 //ソート順
 $sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
@@ -36,9 +37,7 @@ $dbProductData = getDataList($currentMinNum,  $sort);
 //debug('カテゴリデータ：'.print_r($dbCategoryData,true));
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
-
 ?>
-
 <!--ヘッダー-->
 <?php 
 require('header.php');
@@ -86,11 +85,15 @@ $stmt = $dbh->query($sql);
     <?php
     }
     ?>
+    
+    <?php 
+    pagination($currentPageNum, $dbProductData['total_page'],); 
+    
+    ?>
 
 
 </section>
 
-?>
 
 
 

@@ -133,19 +133,24 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
 //    クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
     $rst['total'] = $stmt->rowCount();
-    $rst['tota_page'] = ceil($rst['total']/$span); //総ページ数
+    $rst['total_page'] = ceil($rst['total']/$span); //総ページ数
     if(!$stmt){
         return false;
     }
     
+   
+        
     ///ページング用のSQL文作成
-    $sql = 'SELECT * FROM product order by data_id desc';
-    $sql = ' LIMIT '.$span.' OFFSET '.$currentMinNum;
+    $sql = 'SELECT * FROM data order by data_id desc';
+    $sql .=' LIMIT '.$span.' OFFSET '.$currentMinNum ;
     $data = array();
     debug('SQL:'.$sql);
 //    クエリ実行
     $stmt = queryPost($dbh, $sql, $data);
 
+        debug('???????????????デバック表示???????????????/:' .print_r($stmt,true));
+        
+        
     if($stmt){
 //        クエリ結果のデータを全レコードを格納
         $rst['data'] = $stmt->fetchAll();
@@ -173,7 +178,7 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
         $maxPageNum = $currentPageNum;
 //        現在ページが、総ページ数の１ページ前なら、左にリンク３個、右に１個出す
     }elseif($currentPageNum == ($totalPageNum - 1) && $totalPageNum > $pageColNum){
-        $minPageNum = $currentPageNum = 3;
+        $minPageNum = $currentPageNum - 3;
         $maxPageNum = $currentPageNum + 1;
 //    現在ページが２の場合は左にリンク１個、右にリンク３個出す
     }elseif($currentPageNum == 2 && $totalPageNum > $pageColNum){
@@ -204,7 +209,7 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
             echo  '"><a href="?p='.$i.$link.'">'.$i.'</a></li>';
         }
         if($currentPageNum != $maxPageNum && $maxPageNum > 1){
-            echo'<li class="list-item"><a href="?p='.$maxPageNum.$link.'">&gt;</a></li>';
+            echo '<li class="list-item"><a href="?p='.$maxPageNum.$link.'">&gt;</a></li>';
         }
       echo '</ul>';
     echo '</div>';

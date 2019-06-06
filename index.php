@@ -163,8 +163,11 @@ require('head.php');
             .'内容  '.$row['contents'].'<br>'; 
            ?>
         </div>
-       <?php
-        }
+    <?php
+   
+     }
+//     pagination($currentPageNum, $dbProductData['tota_page']); 
+        
         ?>
      
   
