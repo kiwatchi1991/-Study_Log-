@@ -120,4 +120,90 @@ function queryPost($dbh,$sql,$data){
         return $stmt;
 }
 
+function getDataList($currentMinNum = 1, $sort, $span = 20){
+    debug('データ取得します');
+    //例外
+    try{
+        //DBへ接続
+        $dbh = dbConnect();
+//        件数用のSQL文作成
+        $sql = 'SELECT * FROM data order by data_id desc';
+        
+    $data = array();
+//    クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+    $rst['total'] = $stmt->rowCount();
+    $rst['tota_page'] = ceil($rst['total']/$span); //総ページ数
+    if(!$stmt){
+        return false;
+    }
+    
+    ///ページング用のSQL文作成
+    $sql = 'SELECT * FROM product order by data_id desc';
+    $sql = ' LIMIT '.$span.' OFFSET '.$currentMinNum;
+    $data = array();
+    debug('SQL:'.$sql);
+//    クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt){
+//        クエリ結果のデータを全レコードを格納
+        $rst['data'] = $stmt->fetchAll();
+        return $rst;
+    }else{
+        return false;
+    }
+    
+    } catch (Exception $e) {
+        error_log('エラー発生：' . $e->getMessage());
+    }
+}
+
+//================================
+// ページング
+//================================
+// $currentPageNum : 現在のページ数
+// $totalPageNum : 総ページ数
+// $link : 検索用GETパラメータリンク
+// $pageColNum : ページネーション表示数
+function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
+//    現在のページが、総ページ数と同じかつ、総ページ数が表示項目数以上なら、左にリンク４個出す
+    if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
+        $minPageNum = $currentPageNum - 4;
+        $maxPageNum = $currentPageNum;
+//        現在ページが、総ページ数の１ページ前なら、左にリンク３個、右に１個出す
+    }elseif($currentPageNum == ($totalPageNum - 1) && $totalPageNum > $pageColNum){
+        $minPageNum = $currentPageNum = 3;
+        $maxPageNum = $currentPageNum + 1;
+//    現在ページが２の場合は左にリンク１個、右にリンク３個出す
+    }elseif($currentPageNum == 2 && $totalPageNum > $pageColNum){
+        $minPageNum = $currentPageNum - 1;
+        $maxPageNum = $currentPageNum + 3;
+//        現在ページが１の場合は左に何も出さない。右に５個出す
+    }elseif($currentPageNum == 1 && $totalPageNum > $pageColNum){
+        $minPageNum = $currentPageNum;
+        $maxPageNum = 5;
+//    総ページ数が表示項目数より少ない場合は、総ページ数をループのMax、ループのMinを１に設定
+    }elseif($totalPageNum < $pageColNum){
+        $minPageNum = 1;
+        $maxPageNum = $totalPageNum;
+//        それ以外は左右に２個出す。
+    }else{
+        $minPageNum = $currentPageNum -2;
+        $maxPageNum = $currentPageNum +2;
+    }
+
+    echo   '<div class="pagination">';
+      echo '<ul  class="pagination-list">';
+        if($currentPageNum != 1){
+            echo '<li class="list-item"><a href="?p=1'.$link.'">&lt;</a></li>';
+        }
+        for($i = $minPageNum; $i <= $maxPageNum; $i++){
+            echo ''
+        }
+
+
+
+
+
 ?>

@@ -509,3 +509,112 @@ Stack trace:
 [05-Jun-2019 18:26:57 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
 [05-Jun-2019 18:26:57 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
 [05-Jun-2019 18:26:57 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559726817
+[05-Jun-2019 20:05:53 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:05:53 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 20:05:53 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:05:53 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 20:05:53 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559732753
+[05-Jun-2019 20:05:53 Asia/Tokyo] PHP Fatal error:  Uncaught Error: Call to undefined function getProductList() in /Applications/MAMP/htdocs/study/article.php:32
+Stack trace:
+#0 {main}
+  thrown in /Applications/MAMP/htdocs/study/article.php on line 32
+[05-Jun-2019 20:33:13 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:33:13 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 20:33:13 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:33:13 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 20:33:13 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559734393
+[05-Jun-2019 20:33:13 Asia/Tokyo] PHP Fatal error:  Uncaught Error: Call to undefined function getDataList() in /Applications/MAMP/htdocs/study/article.php:32
+Stack trace:
+#0 {main}
+  thrown in /Applications/MAMP/htdocs/study/article.php on line 32
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559735474
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：データ取得します
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：クエリ成功。
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[05-Jun-2019 20:51:14 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[05-Jun-2019 20:51:14 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[05-Jun-2019 20:51:20 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:51:20 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 20:51:20 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 20:51:20 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 20:51:20 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559735480
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743194
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：データ取得します
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：クエリ成功。
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[05-Jun-2019 22:59:54 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[05-Jun-2019 22:59:54 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[05-Jun-2019 22:59:57 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 22:59:57 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 22:59:57 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 22:59:57 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 22:59:57 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743197
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743201
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：データ取得します
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：クエリ成功。
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[05-Jun-2019 23:00:01 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[05-Jun-2019 23:00:01 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743224
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：データ取得します
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：クエリ成功。
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[05-Jun-2019 23:00:24 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[05-Jun-2019 23:00:24 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[05-Jun-2019 23:00:48 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:48 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 23:00:48 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:48 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:00:48 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743248
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743252
+[05-Jun-2019 23:00:52 Asia/Tokyo] デバッグ：POST送信があります。
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743261
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：データ取得します
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：クエリ成功。
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[05-Jun-2019 23:01:01 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[05-Jun-2019 23:01:01 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[05-Jun-2019 23:01:25 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:01:25 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[05-Jun-2019 23:01:25 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[05-Jun-2019 23:01:25 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[05-Jun-2019 23:01:25 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559743285
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：　「　記事一覧　」　
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559787458
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：データ取得します
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：クエリ成功。
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：SQL: LIMIT 20 OFFSET 0
+[06-Jun-2019 11:17:38 Asia/Tokyo] エラー発生：SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 20 OFFSET 0' at line 1
+[06-Jun-2019 11:17:38 Asia/Tokyo] デバッグ：画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+[06-Jun-2019 11:21:37 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[06-Jun-2019 11:21:37 Asia/Tokyo] デバッグ：　「　トップページ　」　
+[06-Jun-2019 11:21:37 Asia/Tokyo] デバッグ：「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「
+[06-Jun-2019 11:21:37 Asia/Tokyo] デバッグ：>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.画面表示処理開始
+[06-Jun-2019 11:21:37 Asia/Tokyo] デバッグ：現在日時タイムスタンプ：1559787697
