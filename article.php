@@ -23,7 +23,11 @@ $sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
 //パラメータに不正な値が入っているかチェック
 if(!is_int($currentPageNum)){
     error_log('エラー発生：指定ページに不正な値が入りました');
+    debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
     header("Location:index.php"); //トップページへ
+}else{
+    debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
+    
 }
 //表示件数
 $listSpan = 10;
@@ -35,6 +39,8 @@ $dbProductData = getDataList($currentMinNum,  $sort);
 //$dbCategoryData = getCategory();
 //debug('DBデータ：'.print_r($dbFormData,true));
 //debug('カテゴリデータ：'.print_r($dbCategoryData,true));
+
+
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -69,24 +75,27 @@ $stmt = $dbh->query($sql);
         <h2 class="icon">記事一覧</h2>
         <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
     </div>
-    <div class="list">
+    <div class="panel-list">
     <?php 
-    foreach($stmt as $row){
-        //        4.連想配列形式の1行のデータから、キーを指定し、出力する
+        foreach($dbProductData['data'] as $key => $val):
     ?>
-    <div class="form">
-        <?php 
-        echo 
-            '勉強した日  '.$row['date'].'<br>'
-            .'today(h)  '.$row['today'].'<br>'
-            .'total(h)  '.$row['total'].'<br>'
-            .'内容  '.$row['contents'].'<br>'; 
-        ?>
-    </div>
-    <?php
-    }
+        <div class="panel-body">
+            <span class="date">
+                <?php echo sanitize($val['date']); ?>
+            </span>
+            <span class="today">
+                <?php echo sanitize($val['today']); ?>
+            </span>
+            <span class="total">
+                <?php echo sanitize($val['total']);'<br>' ?>
+            </span>
+            <span class="contents">
+                <?php echo sanitize($val['contents']); ?>
+            </span>
+        </div>
+    <?php 
+        endforeach;
     ?>
-    
     </div>
     
     <?php 
