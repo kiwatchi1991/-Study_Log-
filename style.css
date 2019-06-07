@@ -78,6 +78,19 @@ section{
     background-color: #cee4ae;
 }
 
+.top-icon{
+    overflow: hidden;
+}
+
+.top-icon h2{
+    display: inline-block;
+    float: left;
+}
+
+.top-icon h3{
+    display: inline-block;
+    float: right;
+}
 
 /*===============================-
 エラー
