@@ -216,6 +216,15 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
 }
 
 
+//================================
+// その他
+//================================
+//サニタイズ
+function sanitize($str){
+    return htmlspecialchars($str,ENT_QUOTES);
+}
+
+
 
 
 ?>

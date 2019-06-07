@@ -69,6 +69,7 @@ $stmt = $dbh->query($sql);
         <h2 class="icon">記事一覧</h2>
         <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
     </div>
+    <div class="list">
     <?php 
     foreach($stmt as $row){
         //        4.連想配列形式の1行のデータから、キーを指定し、出力する
@@ -85,6 +86,8 @@ $stmt = $dbh->query($sql);
     <?php
     }
     ?>
+    
+    </div>
     
     <?php 
     pagination($currentPageNum, $dbProductData['total_page'],); 
