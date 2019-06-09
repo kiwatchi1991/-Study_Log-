@@ -14,9 +14,9 @@ debugLogStart();
 // GETパラメータを取得
 //----------------------------------
 // カレントページ
-$currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1; //デフォルトは１ページ目
+$currentPageNum = (!empty($_GET['p'])) ? (int)$_GET['p'] : 1; //デフォルトは１ページ目
 //カテゴリー
-
+debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r(gettype($currentPageNum),true));
 //$category = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';
 //ソート順
 $sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
@@ -79,19 +79,24 @@ $stmt = $dbh->query($sql);
     <?php 
         foreach($dbProductData['data'] as $key => $val):
     ?>
-        <div class="panel-body">
-            <span class="date">
+        <?php echo '<div class="panel-body_'.$val['data_id'].' ">';        ?>
+            <div class="icon">
+                <?php 
+                    tweet();
+                ?>
+            </div>
+            <div class="date">
                 <?php echo sanitize($val['date']); ?>
-            </span>
-            <span class="today">
-                <?php echo sanitize($val['today']); ?>
-            </span>
-            <span class="total">
-                <?php echo sanitize($val['total']);'<br>' ?>
-            </span>
-            <span class="contents">
+            </div>
+            <div class="today">
+                today： <?php echo sanitize($val['today']); ?> h
+            </div>
+            <div class="total">
+                total :   <?php echo sanitize($val['total']); ?> h
+            </div>
+            <div class="contents">
                 <?php echo sanitize($val['contents']); ?>
-            </span>
+            </div>
         </div>
     <?php 
         endforeach;
@@ -105,9 +110,10 @@ $stmt = $dbh->query($sql);
 
 
 </section>
-
-
-
-
+   
+   <?php 
+    tweet();
+    ?>
+    
     </body>
 </html>

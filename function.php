@@ -171,7 +171,7 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
 // $totalPageNum : 総ページ数
 // $link : 検索用GETパラメータリンク
 // $pageColNum : ページネーション表示数
-function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
+function pagination( $currentPageNum, $totalPageNum, $pageColNum= 5){
 //    現在のページが、総ページ数と同じかつ、総ページ数が表示項目数以上なら、左にリンク４個出す
     if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
         $minPageNum = $currentPageNum - 4;
@@ -200,16 +200,16 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
 
     echo   '<div class="pagination">';
       echo '<ul  class="pagination-list">';
-        if($currentPageNum != 1){
-            echo '<li class="list-item"><a href="?p=1'.$link.'">&lt;</a></li>';
+        if($currentPageNum !== 1){
+            echo '<li class="list-item"><a href="?pp=1">&lt;</a></li>';
         }
         for($i = $minPageNum; $i <= $maxPageNum; $i++){
             echo '<li class="list-item ';
             if($currentPageNum == $i ){ echo 'active'; }
-            echo  '"><a href="?p='.$i.$link.'">'.$i.'</a></li>';
+            echo  '"><a href="?p='.$i.'">'.$i.'</a></li>';
         }
         if($currentPageNum != $maxPageNum && $maxPageNum > 1){
-            echo '<li class="list-item"><a href="?p='.$maxPageNum.$link.'">&gt;</a></li>';
+            echo '<li class="list-item"><a href="?p='.$maxPageNum.'">&gt;</a></li>';
         }
       echo '</ul>';
     echo '</div>';
@@ -225,6 +225,17 @@ function sanitize($str){
 }
 
 
+//ツイートアイコン表示
+function tweet(){
+    
+    
+    
+    $str = "day%20:%20".. ;
+    
+    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+ target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
+}
 
-
+//today%20:%201%20h%0Atotal%20:%201%20h%0Awertwret
+    
 ?>
