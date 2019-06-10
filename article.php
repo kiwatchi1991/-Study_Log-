@@ -82,7 +82,7 @@ $stmt = $dbh->query($sql);
         <?php echo '<div class="panel-body '.$val['data_id'].' ">';        ?>
             <div class="icon">
                 <?php 
-                $int = $val['data_id'];
+                $int = (int)$val['data_id'];
                 Tweet($int);
                 ?>
             </div>

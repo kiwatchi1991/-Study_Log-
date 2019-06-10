@@ -231,23 +231,18 @@ function Tweet($int){
         //DBへ接続
         $dbh = dbConnect();
         //       SQL文作成
-        $sql = 'SELECT * FROM data WHERE data_id = "$int" ';
+        $sql = 'SELECT * FROM data WHERE data_id = '.$int ;
 
         $data = array();
         //    クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
         
-        echo $int ;
-        debug('???????????????デバック表示???????????????/:' .print_r($int,true));
+
         
         foreach($stmt as $row){
             //        4.連想配列形式の1行のデータから、キーを指定し、出力する
 
-//            echo    '勉強した日  '.$row['date'].'<br>'
-//                .'today(h)  '.$row['today'].'<br>'
-//                .'total(h)  '.$row['total'].'<br>'
-//                .'内容  '.$row['contents'].'<br>'; 
-//  
+
                 $DATE = $row['date'];
                 $TODAY = 'today : '.$row['today'];
                 $TOTAL = 'total : '.$row['total'];
