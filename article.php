@@ -82,7 +82,8 @@ $stmt = $dbh->query($sql);
         <?php echo '<div class="panel-body '.$val['data_id'].' ">';        ?>
             <div class="icon">
                 <?php 
-                    tweet();
+                $int = $val['data_id'];
+                Tweet($int);
                 ?>
             </div>
             <div class="date">
@@ -110,10 +111,6 @@ $stmt = $dbh->query($sql);
 
 
 </section>
-   
-   <?php 
-    tweet();
-    ?>
     
     </body>
 </html>

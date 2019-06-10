@@ -159,10 +159,12 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
         return false;
     }
     
-    } catch (Exception $e) {
+    }catch (Exception $e) {
         error_log('エラー発生：' . $e->getMessage());
     }
 }
+
+
 
 //================================
 // ページング
@@ -217,6 +219,56 @@ function pagination( $currentPageNum, $totalPageNum, $pageColNum= 5){
 
 
 //================================
+// tweet関数
+//================================
+//
+
+function Tweet($int){
+    debug('tweet用データ取得します');
+    debug('???????????????デバック表示222???????????????/:' .print_r($int,true));
+    //例外
+    try{
+        //DBへ接続
+        $dbh = dbConnect();
+        //       SQL文作成
+        $sql = 'SELECT * FROM data WHERE data_id = "$int" ';
+
+        $data = array();
+        //    クエリ実行
+        $stmt = queryPost($dbh, $sql, $data);
+        
+        echo $int ;
+        debug('???????????????デバック表示???????????????/:' .print_r($int,true));
+        
+        foreach($stmt as $row){
+            //        4.連想配列形式の1行のデータから、キーを指定し、出力する
+
+//            echo    '勉強した日  '.$row['date'].'<br>'
+//                .'today(h)  '.$row['today'].'<br>'
+//                .'total(h)  '.$row['total'].'<br>'
+//                .'内容  '.$row['contents'].'<br>'; 
+//  
+                $DATE = $row['date'];
+                $TODAY = 'today : '.$row['today'];
+                $TOTAL = 'total : '.$row['total'];
+                $CONTENTS = $row['contents'];
+            
+            $str = $TODAY.'h%0A'.$TOTAL.'h%0A%0A'.$CONTENTS ;
+            
+          
+            echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+                target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ;
+        }
+        
+     
+    }catch (Exception $e) {
+        error_log('エラー発生：' . $e->getMessage());
+    }
+}
+
+
+
+//================================
 // その他
 //================================
 //サニタイズ
@@ -224,8 +276,12 @@ function sanitize($str){
     return htmlspecialchars($str,ENT_QUOTES);
 }
 
-define('TWEET','<a href="https://twitter.com/intent/tweet?text=ここに投稿した文字を入れたい" 
- target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>');
+
+
+
+
+//define('TWEET','<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>');
 
 //ツイートアイコン表示
 //function tweet(){
@@ -237,14 +293,13 @@ define('TWEET','<a href="https://twitter.com/intent/tweet?text=ここに投稿�
 //    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
 // target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
 //}
+//
+//function tweet(){
+//
+//    echo TWEET ; 
+//}
 
-function tweet(){
-
-    echo '<a href="https://twitter.com/intent/tweet?text=ここに投稿した文字を入れたい" 
- target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
-}
-
-
+//getDataForTweet() ;
 
 //today%20:%201%20h%0Atotal%20:%201%20h%0Awertwret
     
