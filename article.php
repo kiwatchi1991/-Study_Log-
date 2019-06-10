@@ -14,16 +14,20 @@ debugLogStart();
 // GETパラメータを取得
 //----------------------------------
 // カレントページ
-$currentPageNum = (!empty($_GET['p'])) ? $_GET['p'] : 1; //デフォルトは１ページ目
+$currentPageNum = (!empty($_GET['p'])) ? (int)$_GET['p'] : 1; //デフォルトは１ページ目
 //カテゴリー
-
+debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r(gettype($currentPageNum),true));
 //$category = (!empty($_GET['c_id'])) ? $_GET['c_id'] : '';
 //ソート順
 $sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
 //パラメータに不正な値が入っているかチェック
 if(!is_int($currentPageNum)){
     error_log('エラー発生：指定ページに不正な値が入りました');
+    debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
     header("Location:index.php"); //トップページへ
+}else{
+    debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
+    
 }
 //表示件数
 $listSpan = 10;
@@ -35,6 +39,8 @@ $dbProductData = getDataList($currentMinNum,  $sort);
 //$dbCategoryData = getCategory();
 //debug('DBデータ：'.print_r($dbFormData,true));
 //debug('カテゴリデータ：'.print_r($dbCategoryData,true));
+
+
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -69,24 +75,33 @@ $stmt = $dbh->query($sql);
         <h2 class="icon">記事一覧</h2>
         <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
     </div>
-    <div class="list">
+    <div class="panel-list">
     <?php 
-    foreach($stmt as $row){
-        //        4.連想配列形式の1行のデータから、キーを指定し、出力する
+        foreach($dbProductData['data'] as $key => $val):
     ?>
-    <div class="form">
-        <?php 
-        echo 
-            '勉強した日  '.$row['date'].'<br>'
-            .'today(h)  '.$row['today'].'<br>'
-            .'total(h)  '.$row['total'].'<br>'
-            .'内容  '.$row['contents'].'<br>'; 
-        ?>
-    </div>
-    <?php
-    }
+        <?php echo '<div class="panel-body '.$val['data_id'].' ">';        ?>
+            <div class="icon">
+                <?php 
+                $int = (int)$val['data_id'];
+                Tweet($int);
+                ?>
+            </div>
+            <div class="date">
+                <?php echo sanitize($val['date']); ?>
+            </div>
+            <div class="today">
+                today： <?php echo sanitize($val['today']); ?> h
+            </div>
+            <div class="total">
+                total :   <?php echo sanitize($val['total']); ?> h
+            </div>
+            <div class="contents">
+                <?php echo sanitize($val['contents']); ?>
+            </div>
+        </div>
+    <?php 
+        endforeach;
     ?>
-    
     </div>
     
     <?php 
@@ -96,9 +111,6 @@ $stmt = $dbh->query($sql);
 
 
 </section>
-
-
-
-
+    
     </body>
 </html>

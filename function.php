@@ -159,10 +159,12 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
         return false;
     }
     
-    } catch (Exception $e) {
+    }catch (Exception $e) {
         error_log('エラー発生：' . $e->getMessage());
     }
 }
+
+
 
 //================================
 // ページング
@@ -171,7 +173,7 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
 // $totalPageNum : 総ページ数
 // $link : 検索用GETパラメータリンク
 // $pageColNum : ページネーション表示数
-function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
+function pagination( $currentPageNum, $totalPageNum, $pageColNum= 5){
 //    現在のページが、総ページ数と同じかつ、総ページ数が表示項目数以上なら、左にリンク４個出す
     if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
         $minPageNum = $currentPageNum - 4;
@@ -200,20 +202,65 @@ function pagination( $currentPageNum, $totalPageNum, $link ='', $pageColNum= 5){
 
     echo   '<div class="pagination">';
       echo '<ul  class="pagination-list">';
-        if($currentPageNum != 1){
-            echo '<li class="list-item"><a href="?p=1'.$link.'">&lt;</a></li>';
+        if($currentPageNum !== 1){
+            echo '<li class="list-item"><a href="?pp=1">&lt;</a></li>';
         }
         for($i = $minPageNum; $i <= $maxPageNum; $i++){
             echo '<li class="list-item ';
             if($currentPageNum == $i ){ echo 'active'; }
-            echo  '"><a href="?p='.$i.$link.'">'.$i.'</a></li>';
+            echo  '"><a href="?p='.$i.'">'.$i.'</a></li>';
         }
         if($currentPageNum != $maxPageNum && $maxPageNum > 1){
-            echo '<li class="list-item"><a href="?p='.$maxPageNum.$link.'">&gt;</a></li>';
+            echo '<li class="list-item"><a href="?p='.$maxPageNum.'">&gt;</a></li>';
         }
       echo '</ul>';
     echo '</div>';
 }
+
+
+//================================
+// tweet関数
+//================================
+//
+
+function Tweet($int){
+    debug('tweet用データ取得します');
+    debug('???????????????デバック表示222???????????????/:' .print_r($int,true));
+    //例外
+    try{
+        //DBへ接続
+        $dbh = dbConnect();
+        //       SQL文作成
+        $sql = 'SELECT * FROM data WHERE data_id = '.$int ;
+
+        $data = array();
+        //    クエリ実行
+        $stmt = queryPost($dbh, $sql, $data);
+        
+
+        
+        foreach($stmt as $row){
+            //        4.連想配列形式の1行のデータから、キーを指定し、出力する
+
+
+                $DATE = $row['date'];
+                $TODAY = 'today : '.$row['today'];
+                $TOTAL = 'total : '.$row['total'];
+                $CONTENTS = $row['contents'];
+            
+            $str = $TODAY.'h%0A'.$TOTAL.'h%0A%0A'.$CONTENTS ;
+            
+          
+            echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+                target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ;
+        }
+        
+     
+    }catch (Exception $e) {
+        error_log('エラー発生：' . $e->getMessage());
+    }
+}
+
 
 
 //================================
@@ -227,4 +274,28 @@ function sanitize($str){
 
 
 
+
+//define('TWEET','<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>');
+
+//ツイートアイコン表示
+//function tweet(){
+//    
+//    
+//    
+//    $str = "day%20:%20".. ;
+//    
+//    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
+//}
+//
+//function tweet(){
+//
+//    echo TWEET ; 
+//}
+
+//getDataForTweet() ;
+
+//today%20:%201%20h%0Atotal%20:%201%20h%0Awertwret
+    
 ?>
