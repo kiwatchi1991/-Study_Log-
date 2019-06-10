@@ -224,17 +224,27 @@ function sanitize($str){
     return htmlspecialchars($str,ENT_QUOTES);
 }
 
+define('TWEET','<a href="https://twitter.com/intent/tweet?text=ここに投稿した文字を入れたい" 
+ target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>');
 
 //ツイートアイコン表示
+//function tweet(){
+//    
+//    
+//    
+//    $str = "day%20:%20".. ;
+//    
+//    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
+//}
+
 function tweet(){
-    
-    
-    
-    $str = "day%20:%20".. ;
-    
-    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
+
+    echo '<a href="https://twitter.com/intent/tweet?text=ここに投稿した文字を入れたい" 
  target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
 }
+
+
 
 //today%20:%201%20h%0Atotal%20:%201%20h%0Awertwret
     

@@ -79,7 +79,7 @@ $stmt = $dbh->query($sql);
     <?php 
         foreach($dbProductData['data'] as $key => $val):
     ?>
-        <?php echo '<div class="panel-body_'.$val['data_id'].' ">';        ?>
+        <?php echo '<div class="panel-body '.$val['data_id'].' ">';        ?>
             <div class="icon">
                 <?php 
                     tweet();
