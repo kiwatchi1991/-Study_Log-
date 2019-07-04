@@ -136,7 +136,7 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
         //DBへ接続
         $dbh = dbConnect();
 //        件数用のSQL文作成
-        $sql = 'SELECT * FROM data order by data_id desc';
+      $sql = 'SELECT * FROM data WHERE delete_flg = 0 order by data_id desc';
         
     $data = array();
 //    クエリ実行
@@ -150,7 +150,7 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
    
         
     ///ページング用のSQL文作成
-    $sql = 'SELECT * FROM data order by data_id desc';
+      $sql = 'SELECT * FROM data  WHERE delete_flg = 0 order by data_id desc';
     $sql .=' LIMIT '.$span.' OFFSET '.$currentMinNum ;
     $data = array();
     debug('SQL:'.$sql);

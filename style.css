@@ -34,6 +34,19 @@ header h1 a img{
     height: inherit;
 }
 
+/*===============================-
+ポップアップ
+=================================*/
+.popup{
+  position: fixed;
+/*  visibility: hidden;*/
+}
+
+.popup active{
+  position: fixed;
+  visibility: visible;
+}
+
 
 /*===============================-
 レイアウト
@@ -160,10 +173,26 @@ section{
     margin: 5px 5px 0 0;
 }
 
+#article a:visited{
+  color: #444;
+}
+
+.fas{
+  color: #696969;
+  font-size: 25px;
+/*  background: #696969;*/
+  width: auto;
+}
+
+.far{
+  color: #696969;
+  font-size: 25px;
+}
+
 .panel-body .edit{
-	display: inline;
-	float: right;
-	margin: 5px 5px 0 0;
+  display: inline;
+  float: right;
+  margin: 5px 5px 0 0;
 }
 
 panel-body .date{

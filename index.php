@@ -159,27 +159,13 @@ require('head.php');
 
     //        DBからデータを取得
     //DBへの接続準備
-    $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
-    $user = 'kiwatchi1991';
-    $password = 'orange1212';
-    $options = array(
-        // SQL実行失敗時に例外をスロー
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        // デフォルトフェッチモードを連想配列形式に設定
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-    );
-
-    // PDOオブジェクト生成（DBへ接続）
-    $dbh = new PDO($dsn, $user, $password, $options);
-
+    $dbh = dbConnect();
     //        DBからデータを取得
     //        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
-    $sql = "SELECT * FROM data order by data_id desc";
+    $sql = "SELECT * FROM data WHERE delete_flg = 0 ORDER by data_id desc";
     //        2.SQL文を実行するコードを、変数に格納
-    $stmt = $dbh->query($sql);
+    $data = array();
+    $stmt = queryPost($dbh, $sql, $data);
     //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
     
     ?>
