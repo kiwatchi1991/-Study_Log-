@@ -8,6 +8,17 @@ debug('　「　トップページ　」　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
+// 画面表示用データ取得
+//================================
+// GETデータを格納
+$d_id =(!empty($_GET['d_id'])) ? $_GET['d_id'] : '';
+debug('データID：'.print_r($d_id,true));
+
+//DBから商品データを取得
+$dbFormData = (!empty($d_id)) ? getData($d_id) : '';
+//新規登録か編集画面か判別用フラグ
+$edit_flg = (empty($dbFormData)) ? false : true;
+
 
 //post送信されていた場合
 if(!empty($_POST)){
@@ -22,9 +33,9 @@ if(!empty($_POST)){
 //フォームが入力されていない場合
 
     //勉強した日・today・total の形式チェック
-    validNumber($date,'date');
-    validNumber($today,'today');
-    validNumber($total,'total');
+//    validNumber($date,'date'); //カレンダーから入力で、必要なし
+    validNumber2($today,'today');
+    validNumber2($total,'total');
     
     
     //    未入力チェック
@@ -35,19 +46,39 @@ if(!empty($_POST)){
     
     if(empty($err_msg)){
       debug('バリデーションOKです。');
-
+      try {
 //        DBへ接続
     $dbh = dbConnect();
     
 //    SQL文(クエリー作成)
-    $sql = 'INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ';
-
-//プレースホルダーに値をセットし、SQL文を実行（サーバーにデータを保存）
-    $data = array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents);
-        
+//      編集画面の場面は、UPDATE文、新規登録画面の場合はINSERT文を生成
+    if($edit_flg){
+      debug('DB更新です。');
+      $sql = 'UPDATE data SET date = :date, today = :today, total = :total, contents = :contents WHERE data_id = :d_id';
+      $data = array(':date' => $date, ':today' => $today, ':total' => $total, ':contents' => $contents, ':d_id' => $d_id) ;
+    }else{
+      debug('DB新規登録です。');
+      $sql = 'INSERT INTO data (date,today,total,contents) VALUES (:date,:today,:total,:contents) ';
+      //プレースホルダーに値をセットし、SQL文を実行（サーバーにデータを保存）
+      $data = array(':date' => $date,':today'=> $today,':total'=> $total, ':contents'=> $contents);
+    }
+    
+    debug('SQL:'.$sql);
+    debug('流し込みデータ：'.print_r($data,true));
+      //クエリ実行
     $stmt = queryPost($dbh,$sql,$data);
-        
-        header("Location:index.php");
+    
+      
+      //クエリ成功の場合
+      if($stmt){
+//        $_SESSION['msg_success'] =SUC01; 
+        debug('記事ページへ遷移します。');
+        header("Location:article.php");
+      }
+            } catch (Exception $e) {
+        error_log('エラー発生：' . $e->getMessage());
+        $err_msg['common'] = MSG06;
+      }
     }
 
   }
@@ -75,73 +106,66 @@ require('head.php');
 <!--   メインコンテンツ-->
    <div id="contents" class="site-width">
 <!--       投稿-->
-        <section class="today">
-           <h2 class="icon">投稿</h2>
-           <div class="form">
-               <form action="" method="post">
-                   <dl>
-                      <span class="err_msg"><?php if(!empty($err_msg['date'])) echo $err_msg['date']; ?></span>
-                       <dt><span class="">勉強した日</span></dt>
+    <section class="today">
+      <h2 class="icon">投稿</h2>
+        <div class="form">
+          <form action="" method="post">
+            <dl>
+              <!--date-->
+              <div id="err_msg">
+                <span class="err_msg"><?php if(!empty($err_msg['date'])) echo $err_msg['date']; ?></span>
+              </div>
+              <dt><span class="">STUDY DAY</span></dt>
+              
+              <dd>
+              <input type="date" name="date" class="date" value="<?php echo getFormData('date'); ?>">
+              </dd>
                        
-                     <dd>
-                       <input type="text" name="date" class="date" value="<?php if(!empty($_POST['date'])) echo $_POST['date']; ?>">
-<!--
-                           <div class="area-msg">
-                               <?php if(!empty($err_msg['date'])) echo $err_msg['date'];?>
-                           </div>
--->
-                     </dd>
+              <!--today-->
+               <div id="err_msg">
+               <span class="err_msg"><?php if(!empty($err_msg['today'])) echo $err_msg['today']; ?></span>
+               </div>
+               <dt><span class="">TODAY(h)</span></dt>
                        
-                       <span class="err_msg"><?php if(!empty($err_msg['today'])) echo $err_msg['today']; ?></span>
-                       <dt><span class="">today(h)</span></dt>
+              <dd><input type="text" name="today" class="day" value="<?php echo getFormData('today'); ?>"></dd>
                        
-                       <dd><input type="text" name="today" class="day" value="<?php if(!empty($_POST['today'])) echo $_POST['today']; ?>"></dd>
+              <!-- total-->
+              <div id="err_msg">
+              <span class="err_msg"><?php if(!empty($err_msg['total'])) echo $err_msg['total']; ?></span>
+              </div>
+              <dt><span class="">TOTAL(h)</span></dt>
+              <dd><input type="text" name="total" class="total"  value="<?php echo getFormData('total'); ?>"></dd>
                        
-                       <span class="err_msg"><?php if(!empty($err_msg['total'])) echo $err_msg['total']; ?></span>
-                       <dt><span class="">total(h)</span></dt>
+              <!-- 内容-->
+              <div id="err_msg">
+              <span class="err_msg"><?php if(!empty($err_msg['contents'])) echo $err_msg['contents']; ?></span>
+              </div>
+              
+              <dt><span class="">COMMENT</span></dt>
                        
-                       <dd><input type="text" name="total" class="total"  value="<?php if(!empty($_POST['total'])) echo $_POST['total']; ?>"></dd>
-                       
-                       <span class="err_msg"><?php if(!empty($err_msg['contents'])) echo $err_msg['contents']; ?></span>
-                       <dt><span class="">内容</span></dt>
-                       
-                       <dd><textarea name="contents"  cols="50" rows="10"  value="<?php if(!empty($_POST['contents'])) echo $_POST['contents']; ?>"></textarea></dd>
+              <dd><textarea name="contents"  cols="50" rows="10"  value=""><?php echo getFormData('contents'); ?></textarea></dd>
                       
-                   </dl>
-                   <button type="submit" class="btn">送信</button>
+            </dl>
+              <button type="submit" class="btn">SUBMIT</button>
                    
-               </form>
-           </div>
-       </section>
+              </form>
+        </div>
+     </section>
        
-    </div>
+</div>
     
-    <?php 
+<?php 
     
 
     //        DBからデータを取得
     //DBへの接続準備
-    $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
-    $user = 'kiwatchi1991';
-    $password = 'orange1212';
-    $options = array(
-        // SQL実行失敗時に例外をスロー
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        // デフォルトフェッチモードを連想配列形式に設定
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-        // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-        PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
-    );
-
-    // PDOオブジェクト生成（DBへ接続）
-    $dbh = new PDO($dsn, $user, $password, $options);
-
+    $dbh = dbConnect();
     //        DBからデータを取得
     //        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
-    $sql = "SELECT * FROM data order by data_id desc";
+    $sql = "SELECT * FROM data WHERE delete_flg = 0 ORDER by data_id desc";
     //        2.SQL文を実行するコードを、変数に格納
-    $stmt = $dbh->query($sql);
+    $data = array();
+    $stmt = queryPost($dbh, $sql, $data);
     //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
     
     ?>
@@ -157,10 +181,10 @@ require('head.php');
        <div class="form">
         <?php 
             echo 
-            '勉強した日  '.$row['date'].'<br>'
-            .'today(h)  '.$row['today'].'<br>'
-            .'total(h)  '.$row['total'].'<br>'
-            .'内容  '.$row['contents'].'<br>'; 
+             $row['date'].'<br>'
+            .'TODAY(h) : '.'<span class="hour">'.$row['today'].'</span>'.'<br>'
+				.'TOTAL(h) : '.'<span class="hour">'.$row['total'].'</span>'.'<br>'
+            .$row['contents'].'<br>'; 
            ?>
         </div>
     <?php
