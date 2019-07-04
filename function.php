@@ -41,11 +41,12 @@ function debugLogStart(){
 //================================
 //エラーメッセージを定数に設定
 define('MSG01','入力必須です');
-define('MSG02','半角数字のみ御利用頂けます');
+define('MSG02','正の半角数字のみ御利用頂けます');
 define('MSG03','時間の形式が違います');
 define('MSG04','');
 define('MSG05','');
 define('MSG06','エラーが発生しました。しばらく経ってからもう一度お試しください。');
+define('SUC01','クエリ成功しました。');
 
 //配列$err_msgを用意
 $err_msg = array();
@@ -63,11 +64,19 @@ function validRequired($str, $key){
 }
 
 //バリデーション関数（半角数字チェック）
-function validNumber($str, $key){
+function validNumber1($str, $key){
     if(!preg_match("/^[0-9]+$/", $str)){
         global $err_msg;
         $err_msg[$key] = MSG02;
     }
+}
+
+//バリデーション関数（半角数字チェック（小数点あり））
+function validNumber2($str, $key){
+  if(!preg_match("/^[0-9]+(\.[0-9]+)?$/", $str)){
+    global $err_msg;
+    $err_msg[$key] = MSG02;
+  }
 }
 
 //エラーメッセージ表示
@@ -164,7 +173,30 @@ function getDataList($currentMinNum = 1, $sort, $span = 20){
     }
 }
 
+function getData($d_id){
+	debug('商品情報を取得');
+	debug('データID：'.$d_id);
+	//  例外処理
+	try {
+		//    DBへ接続
+		$dbh = dbConnect();
+		//    SQL文作成
+		$sql = 'SELECT * FROM data WHERE data_id = :d_id AND delete_flg = 0';
+		$data = array(':d_id' => $d_id,);
+		//    クエリ実行
+		$stmt = queryPost($dbh, $sql, $data);
 
+		if($stmt){
+			//      クエリ結果のデータを１レコード返却
+			return $stmt->fetch(PDO::FETCH_ASSOC);
+		}else{
+			return false;
+		}
+
+	} catch (Exception $e) {
+		error_log('エラー発生:' . $e->getMessage());
+	}
+}
 
 //================================
 // ページング
@@ -271,31 +303,40 @@ function sanitize($str){
     return htmlspecialchars($str,ENT_QUOTES);
 }
 
+//フォーム入力保持
+function getFormData($str, $flg = false){
+  if($flg){
+    $method = $_GET;
+  }else{
+    $method = $_POST;
+  }
+  global $dbFormData;
+  //  ユーザーデータがある場合
+  if(!empty($dbFormData)){
+    //    フォームのエラーがある場合
+    if(!empty($err_msg[$str])){
+      //      POSTにデータがある場合
+      if(isset($method[$str])){
+        return sanitize($method[$str]);
+      }else{
+        //        ない場合（基本ありえない）はDBの情報を表示
+        return sanitize($dbFormData[$str]);
+      }
+    }else{
+      //      POSTにデータがあり、DBの情報と違う場合
+      if(isset($method[$str]) && $method[$str] !== $dbFormData[$str]){
+        return sanitize($method[$str]);
+      }else{
+        return sanitize($dbFormData[$str]);
+      }
+    }
+  }else{
+    if(isset($method[$str])){
+      return sanitize($method[$str]);
+    }
+  }
+}
 
 
 
-
-//define('TWEET','<a href="https://twitter.com/intent/tweet?text='.$str.'" 
-// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>');
-
-//ツイートアイコン表示
-//function tweet(){
-//    
-//    
-//    
-//    $str = "day%20:%20".. ;
-//    
-//    echo '<a href="https://twitter.com/intent/tweet?text='.$str.'" 
-// target="_blank"><img src="img/icon_1.png" alt="tweet" title="tweet" height="25px" width="25px"></a>' ; 
-//}
-//
-//function tweet(){
-//
-//    echo TWEET ; 
-//}
-
-//getDataForTweet() ;
-
-//today%20:%201%20h%0Atotal%20:%201%20h%0Awertwret
-    
 ?>

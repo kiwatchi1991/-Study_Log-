@@ -86,6 +86,7 @@ $stmt = $dbh->query($sql);
                 Tweet($int);
                 ?>
             </div>
+      <div class="edit"><a href="index.php<?php echo '?d_id='.$val['data_id']; ?>">編集</a></div>
             <div class="date">
                 <?php echo sanitize($val['date']); ?>
             </div>
