@@ -294,14 +294,14 @@ function Tweet($int){
 }
 
 
-
 //================================
 // その他
 //================================
 //サニタイズ
+
 function sanitize($str){
     return htmlspecialchars($str,ENT_QUOTES);
-}
+ }
 
 //フォーム入力保持
 function getFormData($str, $flg = false){

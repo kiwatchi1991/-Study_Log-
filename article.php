@@ -61,14 +61,6 @@ if(!empty($dlt_flg)){
 // 削除ボタン押された時(終わり)
 
 
-//        DBへ接続
-//$dbh = dbConnect();
-
-//        DBからデータを取得
-//        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
-
-
-
 
 // ページネーション
 //================================================================
@@ -115,6 +107,7 @@ require('head.php');
 ?>
 
 
+
 <body id="article">
  
 <?php
@@ -129,16 +122,6 @@ require('head.php');
 //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
   ?>
   
-<!--ポップアップ-->
-<section class="popup">
-  <div class="popup-overlay">
-  <p>この投稿を削除しますか？</p>
-  <input type="submit" class="btn" value="はい">
-  <input type="submit" class="btn" value="いいえ">
-  </div>
-</section>
-
-
 
 <section class="past">
     <div class="top-icon">
@@ -150,8 +133,9 @@ require('head.php');
     <?php 
         foreach($dbProductData['data'] as $key => $val):
     ?>
-        <?php echo '<div class="panel-body '.$val['data_id'].' ">';        ?>
-            <div class="icon tweet">
+        <?php echo '<div class="panel-body '.$val['data_id'].' ">';       ?>
+                 
+                   <div class="icon tweet">
                 <?php 
                 $int = (int)$val['data_id'];
                 Tweet($int);
@@ -160,20 +144,32 @@ require('head.php');
 <!--            編集アイコン-->
             <div class="icon edit"><a href="index.php<?php echo '?d_id='.$val['data_id']; ?>"><i class="fas fa-edit"></i></a></div>
 <!--            削除アイコン-->
-      <div class="icon delete"><a href="article.php<?php echo '?d_id='.$val['data_id']; ?>"><i class="far fa-trash-alt"></i></a></div>
+          <div class="icon delete">
+<!--           //aタグにコンフfァームメッセージ-->
+
+           
+            <a href="article.php<?php echo '?d_id='.$val['data_id']; ?>" onclick="return confirm('<?php echo sanitize($val['date']); ?>\n<?php echo sanitize($val['today']); ?>\n<?php echo sanitize($val['total']); ?>\n<?php echo sanitize($val['contents']); ?>\n\nこの投稿を削除しますか？'); ">
+           <i class="far fa-trash-alt"></i></a></div>
             
             <div class="date">
                 <?php echo sanitize($val['date']); ?>
             </div>
-            <div class="today">
-                today： <?php echo sanitize($val['today']); ?> h
+            
+            <div class="studied-time">
+              <div class="today">
+                today： <span class="hour"><?php echo sanitize($val['today']); ?></span> h
+              </div>
+              <div class="total">
+                total :   <span class="hour"><?php echo sanitize($val['total']); ?></span> h
+              </div>
             </div>
-            <div class="total">
-                total :   <?php echo sanitize($val['total']); ?> h
-            </div>
+            
             <div class="contents">
-                <?php echo sanitize($val['contents']); ?>
+              <pre><?php echo sanitize($val['contents']); ?></pre>
             </div>
+            
+      <pre><?php echo sanitize($val['contents']); ?></pre>
+        
         </div>
     <?php 
         endforeach;
@@ -187,6 +183,14 @@ require('head.php');
 
 
 </section>
+    
+<script>
+  let $a = $('.icon');
+  
+  let myFunc = $a.textContent;
+  
+  console.log(myFunc);
+</script>
     
     </body>
 </html>
