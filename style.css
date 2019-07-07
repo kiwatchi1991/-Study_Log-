@@ -34,18 +34,6 @@ header h1 a img{
     height: inherit;
 }
 
-/*===============================-
-ポップアップ
-=================================*/
-.popup{
-  position: fixed;
-/*  visibility: hidden;*/
-}
-
-.popup active{
-  position: fixed;
-  visibility: visible;
-}
 
 
 /*===============================-
@@ -68,7 +56,7 @@ header h1 a img{
     border-radius: 5px;
 }
 
-.past .form .hour{
+#article .panel-list .hour{
 	font-weight: bold;
 }
 
@@ -163,17 +151,42 @@ section{
 }
 
 .panel-body{
-    border: solid 1px #000000;
-    margin-bottom: 5px;
-    padding-left: 5px;
+  margin-bottom: 5px;
+  background-color: #f4fff9;
+  border: 3px solid #66cdaa;
+  border-radius: 10px;
+  padding: 5px 15px;
 }
+
+.panel-body .studied-time{
+  height: 30px;
+}
+
+.panel-body .today{
+  float: left;
+  
+}
+
+.panel-body .total{
+  float: left;
+  margin-left: 15px;
+ 
+}
+
+.panel-body .contents{
+
+  clear: both;
+  margin-top: 20px;
+  
+}
+
 .panel-body .icon{
     display: inline;
     float: right;
     margin: 5px 5px 0 0;
 }
 
-#article a:visited{
+a:visited{
   color: #444;
 }
 

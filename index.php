@@ -107,7 +107,12 @@ require('head.php');
    <div id="contents" class="site-width">
 <!--       投稿-->
     <section class="today">
-      <h2 class="icon">投稿</h2>
+    
+     <div class="top-icon">
+        <h2 class="icon">投稿</h2>
+        <h3><a href="article.php">&gt;&gt;記事一覧へ</a></h3>
+     </div>
+       
         <div class="form">
           <form action="" method="post">
             <dl>
@@ -154,49 +159,7 @@ require('head.php');
        
 </div>
     
-<?php 
-    
 
-    //        DBからデータを取得
-    //DBへの接続準備
-    $dbh = dbConnect();
-    //        DBからデータを取得
-    //        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
-    $sql = "SELECT * FROM data WHERE delete_flg = 0 ORDER by data_id desc";
-    //        2.SQL文を実行するコードを、変数に格納
-    $data = array();
-    $stmt = queryPost($dbh, $sql, $data);
-    //        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
-    
-    ?>
-    <section class="past">
-       <div class="top-icon">
-            <h2 class="icon">記録</h2>
-           <h3><a href="article.php">&gt;&gt;記事一覧へ</a></h3>
-        </div>
-        <?php 
-    foreach($stmt as $row){
-        //        4.連想配列形式の1行のデータから、キーを指定し、出力する
-        ?>
-       <div class="form">
-        <?php 
-            echo 
-             $row['date'].'<br>'
-            .'TODAY(h) : '.'<span class="hour">'.$row['today'].'</span>'.'<br>'
-				.'TOTAL(h) : '.'<span class="hour">'.$row['total'].'</span>'.'<br>'
-            .$row['contents'].'<br>'; 
-           ?>
-        </div>
-    <?php
-   
-     }
-//     pagination($currentPageNum, $dbProductData['tota_page']); 
-        
-        ?>
-     
-  
-   </section>
-    
 </body>
 </html>
 
