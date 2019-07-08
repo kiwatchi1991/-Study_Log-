@@ -24,16 +24,15 @@ $edit_flg = (empty($dbFormData)) ? false : true;
 if(!empty($_POST)){
     debug('POST送信があります。');
 
-    //変数に代入　本来はサニタイズ必要
-    $date = htmlspecialchars($_POST['date'],ENT_QUOTES);
-    $today = htmlspecialchars($_POST['today'],ENT_QUOTES);
-    $total = htmlspecialchars($_POST['total'],ENT_QUOTES);
-    $contents = htmlspecialchars($_POST['contents'],ENT_QUOTES);
+    //変数に代入
+    $date =  sanitize($_POST['date']);
+    $today = sanitize($_POST['today']);
+    $total = sanitize($_POST['total']);
+    $contents = sanitize($_POST['contents']);
 
 //フォームが入力されていない場合
 
     //勉強した日・today・total の形式チェック
-//    validNumber($date,'date'); //カレンダーから入力で、必要なし
     validNumber2($today,'today');
     validNumber2($total,'total');
     
@@ -110,7 +109,7 @@ require('head.php');
     
      <div class="top-icon">
         <h2 class="icon">投稿</h2>
-        <h3><a href="article.php">&gt;&gt;記事一覧へ</a></h3>
+       <h3><a href="article.php">記事一覧へ <i class="far fa-hand-point-right"></i></a></h3>
      </div>
        
         <div class="form">
@@ -120,7 +119,7 @@ require('head.php');
               <div id="err_msg">
                 <span class="err_msg"><?php if(!empty($err_msg['date'])) echo $err_msg['date']; ?></span>
               </div>
-              <dt><span class="">STUDY DAY</span></dt>
+              <dt><span class="">DATE</span></dt>
               
               <dd>
               <input type="date" name="date" class="date" value="<?php echo getFormData('date'); ?>">
@@ -141,7 +140,7 @@ require('head.php');
               <dt><span class="">TOTAL(h)</span></dt>
               <dd><input type="text" name="total" class="total"  value="<?php echo getFormData('total'); ?>"></dd>
                        
-              <!-- 内容-->
+              <!-- Contents-->
               <div id="err_msg">
               <span class="err_msg"><?php if(!empty($err_msg['contents'])) echo $err_msg['contents']; ?></span>
               </div>
@@ -162,11 +161,4 @@ require('head.php');
 
 </body>
 </html>
-
-
-<!--
-<section class="past">
-    <h2 class="icon">投稿</h2>
-<div class="form">
--->
 

@@ -86,12 +86,6 @@ $listSpan = 10;
 $currentMinNum = (($currentPageNum-1)*$listSpan); //１ページ目なら(1-1)*20=0,2ページ目なら(２−１)*20=20
 //DBから商品データを取得
 $dbProductData = getDataList($currentMinNum,  $sort);
-//DBからカテゴリデータを取得
-//$dbCategoryData = getCategory();
-//debug('DBデータ：'.print_r($dbFormData,true));
-//debug('カテゴリデータ：'.print_r($dbCategoryData,true));
-
-
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -109,24 +103,11 @@ require('head.php');
 
 
 <body id="article">
- 
-<?php
-//        DBへ接続
-//$dbh = dbConnect();
-
-//        DBからデータを取得
-//        1.テーブルにある全てのデータを取得するSQL文を、変数に格納
-//$sql = "SELECT * FROM data WHERE delete_flg = 0 ORDER by data_id desc";
-//        2.SQL文を実行するコードを、変数に格納
-//$stmt = $dbh->query($sql);
-//        3.foreach文でデータベースより取得したデータを１行ずるループ処理（連想配列で取得したデータのうち、１行文が$rowに格納
-  ?>
-  
 
 <section class="past">
     <div class="top-icon">
         <h2 class="icon">記事一覧</h2>
-        <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
+      <h3><a href="index.php"><i class="far fa-hand-point-left"></i> TOPへ</a></h3>
     </div>
     
     <div class="panel-list">
@@ -167,8 +148,6 @@ require('head.php');
             <div class="contents">
               <pre><?php echo sanitize($val['contents']); ?></pre>
             </div>
-            
-      <pre><?php echo sanitize($val['contents']); ?></pre>
         
         </div>
     <?php 
@@ -194,3 +173,6 @@ require('head.php');
     
     </body>
 </html>
+
+
+<!--/*!40101 SET NAMES utf8mb4 */-->
