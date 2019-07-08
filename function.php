@@ -129,7 +129,7 @@ function queryPost($dbh,$sql,$data){
         return $stmt;
 }
 
-function getDataList($currentMinNum = 1, $sort, $span = 20){
+function getDataList($currentMinNum = 1, $sort, $span){
     debug('データ取得します');
     //例外
     try{
