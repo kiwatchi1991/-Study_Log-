@@ -109,7 +109,7 @@ require('head.php');
     
      <div class="top-icon">
         <h2 class="icon">投稿</h2>
-        <h3><a href="article.php">&gt;&gt;記事一覧へ</a></h3>
+       <h3><a href="article.php">記事一覧へ <i class="far fa-hand-point-right"></i></a></h3>
      </div>
        
         <div class="form">

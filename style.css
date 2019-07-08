@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    color: #444;
+    color: #696969;
     line-height: 150%;
     font-size: 18px;
 }
@@ -120,6 +120,7 @@ section{
     margin-left: 185px;
 	padding: 5px 10px;
 	border-radius: 10px;
+    color: #696969;
 	
 }
 #contents .form button:hover{
@@ -187,7 +188,7 @@ section{
 }
 
 a:visited{
-  color: #444;
+  color: #696969;
 }
 
 .fas{

@@ -107,7 +107,7 @@ require('head.php');
 <section class="past">
     <div class="top-icon">
         <h2 class="icon">記事一覧</h2>
-        <h3><a href="index.php">&lt;&lt;TOPへ</a></h3>
+      <h3><a href="index.php"><i class="far fa-hand-point-left"></i> TOPへ</a></h3>
     </div>
     
     <div class="panel-list">
