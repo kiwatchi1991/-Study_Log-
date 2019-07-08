@@ -15,12 +15,12 @@ h1,h2,h3,h4,h5,h6,p{
 =================================*/
 header{
     margin-bottom: 30px;
-    height: 80px;
+    height: 90px;
   background-color: #66cdaa;
     
 }
 header h1{
-    margin: 10px 0 0 15px;
+    margin: 0px 0 0 15px;
     float: left;
     width: 980px;
 }
@@ -31,7 +31,7 @@ header h1 a{
 }
 
 header h1 a img{
-    height: inherit;
+    height: 90px;
 }
 
 
