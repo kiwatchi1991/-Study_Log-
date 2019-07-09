@@ -85,7 +85,7 @@ $listSpan = 10;
 //現在の表示レコード先頭を算出
 $currentMinNum = (($currentPageNum-1)*$listSpan); //１ページ目なら(1-1)*20=0,2ページ目なら(２−１)*20=20
 //DBから商品データを取得
-$dbProductData = getDataList($currentMinNum,  $sort);
+$dbProductData = getDataList($currentMinNum,  $sort, $listSpan);
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -104,6 +104,9 @@ require('head.php');
 
 <body id="article">
 
+  <!--   メインコンテンツ-->
+  <div id="contents" class="site-width">
+
 <section class="past">
     <div class="top-icon">
         <h2 class="icon">記事一覧</h2>
@@ -116,7 +119,7 @@ require('head.php');
     ?>
         <?php echo '<div class="panel-body '.$val['data_id'].' ">';       ?>
                  
-                   <div class="icon tweet">
+            <div class="icon tweet">
                 <?php 
                 $int = (int)$val['data_id'];
                 Tweet($int);
@@ -153,24 +156,24 @@ require('head.php');
     <?php 
         endforeach;
     ?>
-    </div>
     
     <?php 
     pagination($currentPageNum, $dbProductData['total_page'],); 
     
     ?>
 
+ 
+
 
 </section>
     
-<script>
-  let $a = $('.icon');
-  
-  let myFunc = $a.textContent;
-  
-  console.log(myFunc);
-</script>
-    
+  </div>
+
+<!--フッター-->
+<?php 
+require('footer.php');
+?>
+   
     </body>
 </html>
 

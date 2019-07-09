@@ -54,6 +54,7 @@ header h1 a img{
   border: 3px solid #66cdaa;
     padding: 10px 0;
     border-radius: 5px;
+    margin-bottom: 100px;
 }
 
 #article .panel-list .hour{
@@ -218,6 +219,25 @@ panel-body .date{
 
 }
 
+
+/*===============================-
+フッター
+=================================*/
+#footer{
+  position: absolute;
+  height: 60px;
+  width:100%;
+  text-align: center;
+  line-height: 60px;
+  background-color: #696969;
+  color: white;
+
+}
+#footer a{
+  background-color: #696969;
+  color: white;
+  text-decoration: none;
+}
 
 /*===============================-
 ページネーション

@@ -95,8 +95,8 @@ function getErrMsg($key){
 //DB接続
 function dbConnect(){
     //DBへの接続準備
-    $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
-    $user = 'kiwatchi1991';
+  $dsn = 'mysql:dbname=kiwatchi_db;host=mysql1023.db.sakura.ne.jp;charset=utf8';
+    $user = 'kiwatchi';
     $password = 'orange1212';
     $options = array(
         // SQL実行失敗時に例外をスロー
@@ -129,7 +129,7 @@ function queryPost($dbh,$sql,$data){
         return $stmt;
 }
 
-function getDataList($currentMinNum = 1, $sort, $span){
+function getDataList($currentMinNum = 1, $sort, $span = 20){
     debug('データ取得します');
     //例外
     try{

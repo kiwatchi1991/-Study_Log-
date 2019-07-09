@@ -20,6 +20,39 @@ $dbFormData = (!empty($d_id)) ? getData($d_id) : '';
 $edit_flg = (empty($dbFormData)) ? false : true;
 
 
+// ページネーション
+//================================================================
+// カレントページ
+$currentPageNum = (!empty($_GET['p'])) ? (int)$_GET['p'] : 1; //デフォルトは１ページ目
+//カテゴリー
+debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r(gettype($currentPageNum),true));
+//ソート順
+$sort = (!empty($_GET['sort'])) ? $_GET['sort'] : '';
+//パラメータに不正な値が入っているかチェック
+if(!is_int($currentPageNum)){
+  error_log('エラー発生：指定ページに不正な値が入りました');
+  debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
+  header("Location:index.php"); //トップページへ
+}else{
+  debug('デバック■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■'.print_r($currentPageNum,true));
+
+}
+//表示件数
+$listSpan = 3;
+//現在の表示レコード先頭を算出
+$currentMinNum = (($currentPageNum-1)*$listSpan); //１ページ目なら(1-1)*20=0,2ページ目なら(２−１)*20=20
+
+//DBから商品データを取得
+$dbProductData = getDataList($currentMinNum,  $sort, $listSpan);
+
+
+
+
+
+
+
+
+
 //post送信されていた場合
 if(!empty($_POST)){
     debug('POST送信があります。');
@@ -154,10 +187,80 @@ require('head.php');
                    
               </form>
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
+    <div class="panel-list">
+      
+       <div class="top-icon">
+          <h2 class="icon">最新の投稿</h2>
+          <h3><a href="article.php">記事一覧へ <i class="far fa-hand-point-right"></i></a></h3>
+       </div>
+        
+        
+        <?php 
+        foreach($dbProductData['data'] as $key => $val):
+        ?>
+        <?php echo '<div class="panel-body '.$val['data_id'].' ">';       ?>
+
+        <div class="icon tweet">
+          <?php 
+          $int = (int)$val['data_id'];
+          Tweet($int);
+          ?>
+        </div>
+        <!--            編集アイコン-->
+        <div class="icon edit"><a href="index.php<?php echo '?d_id='.$val['data_id']; ?>"><i class="fas fa-edit"></i></a></div>
+        <!--            削除アイコン-->
+        <div class="icon delete">
+          <!--           //aタグにコンフfァームメッセージ-->
+
+
+          <a href="article.php<?php echo '?d_id='.$val['data_id']; ?>" onclick="return confirm('<?php echo sanitize($val['date']); ?>\n<?php echo sanitize($val['today']); ?>\n<?php echo sanitize($val['total']); ?>\n<?php echo sanitize($val['contents']); ?>\n\nこの投稿を削除しますか？'); ">
+            <i class="far fa-trash-alt"></i></a></div>
+
+        <div class="date">
+          <?php echo sanitize($val['date']); ?>
+        </div>
+
+        <div class="studied-time">
+          <div class="today">
+            today： <span class="hour"><?php echo sanitize($val['today']); ?></span> h
+          </div>
+          <div class="total">
+            total :   <span class="hour"><?php echo sanitize($val['total']); ?></span> h
+          </div>
+        </div>
+
+        <div class="contents">
+          <pre><?php echo sanitize($val['contents']); ?></pre>
+        </div>
+
+      </div>
+      <?php 
+      endforeach;
+      ?>
+
+        
+        
+        
+        
+        
+        
+        
      </section>
        
 </div>
     
+<!--フッター-->
+<?php 
+require('footer.php');
+  ?>
 
 </body>
 </html>
