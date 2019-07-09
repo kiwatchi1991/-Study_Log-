@@ -104,6 +104,9 @@ require('head.php');
 
 <body id="article">
 
+  <!--   メインコンテンツ-->
+  <div id="contents" class="site-width">
+
 <section class="past">
     <div class="top-icon">
         <h2 class="icon">記事一覧</h2>
@@ -159,10 +162,12 @@ require('head.php');
     
     ?>
 
+ 
 
 
 </section>
     
+  </div>
 
 <!--フッター-->
 <?php 
