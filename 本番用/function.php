@@ -57,7 +57,7 @@ $err_msg = array();
 
 //バリデーション関数（未入力チェック）
 function validRequired($str, $key){
-  if($str === ''){ //金額フォームなどを考えると数値の０はOKにし、空文字はダメにする
+  if($str === ''|| $str === null){ //金額フォームなどを考えると数値の０はOKにし、空文字はダメにする
     global $err_msg;
     $err_msg[$key] = MSG01;
   }

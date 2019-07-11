@@ -188,6 +188,10 @@ section{
     margin: 5px 5px 0 0;
 }
 
+.top-icon a{
+  color: #696969;
+}
+
 a:visited{
   color: #696969;
 }
