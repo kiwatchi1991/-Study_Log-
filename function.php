@@ -96,8 +96,8 @@ function getErrMsg($key){
 function dbConnect(){
     //DBへの接続準備
     $dsn = 'mysql:dbname=study;host=localhost;charset=utf8';
-    $user = 'kiwatchi1991';
-    $password = 'orange1212';
+    $user = 'root';
+    $password = 'root';
     $options = array(
         // SQL実行失敗時に例外をスロー
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
